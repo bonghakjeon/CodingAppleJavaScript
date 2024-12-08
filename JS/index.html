@@ -1,0 +1,45 @@
+<!--  [코딩애플] JavaScript 스터디  -->
+<!--  Level 1  -->
+<!--  1강 - 강의 소개와 자바스크립트의 근본  -->
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+  <!--  자바스크립트 언어는 HTML 코드 조작을 위해 필요한 프로그래밍 언어이다.  -->
+  <h1 id="hello">안녕하세요</h1>
+
+  <h1 id="hi">JS 초보에요</h1>
+
+  <script>
+    // document - html 문서(index.html) 의미
+    // 마침표(.) - ~의 의미 (예) html 문서(index.html) 의
+    // getElementById - 셀렉터(selector)라고 부르며, 웹문서 안에 있는 원하는 요소를 찾을 때 사용한다. html 문서(index.html)의 특정 아이디 값('hello')을 가진 html 요소(Element) 가져오기 
+    // 마침표(.) - ~의 의미 (예) html 문서(index.html) 의 특정 아이디 값('hello')을 가진 html 요소(Element)의 
+    // innerHTML - 특정 아이디 값('hello')을 가진 html 요소(Element)의 내부 html 내용(값)
+    // = '안녕' - 특정 아이디 값('hello')을 가진 html 요소(Element)의 내부 html 내용(값) 을 등호(=) 오른쪽에 있는 '안녕'으로 바꾸기
+    // document.getElementById('hello').innerHTML = '안녕';
+
+    // html 문서(index.html)의 특정 html 요소('hello')의 글자색을 빨간색(red)으로 바꾸기
+    document.getElementById('hello').style.color = 'red';
+
+    // html 문서(index.html)의 특정 html 요소('hello')의 이미지(src)를 '~~~'으로 바꾸기
+    // document.getElementById('hello').src = '~~~';
+
+    // html 문서(index.html)의 특정 html 요소('hi')의 내부 html 내용(값) 을 등호(=) 오른쪽에 있는 'JS 고수에요'로 바꾸기
+    document.getElementById('hi').innerHTML = 'JS 고수에요';
+
+    // [ 오늘의 숙제 ]
+    // <h1> 내부 글자 사이즈를 16px로 변경해오십시오
+    // 자바스크립트로 font-size 변경하는 법을 구글찾아보면 되겠군요 
+    // html 문서(index.html)의 특정 html 요소('hello')의 글자 크기 '16px'로 바꾸기
+    // 참고 URL - https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/fontsize
+    // 참고 2 URL - https://shadesign.tistory.com/20
+    document.getElementById('hello').style.fontSize = '16px';
+
+  </script>
+</body>
+</html>
