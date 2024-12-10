@@ -19,14 +19,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-</head>
-<body>
-  <!--  자바스크립트 언어는 HTML 코드 조작을 위해 필요한 프로그래밍 언어이다.  -->
-  <h1 id="hello">안녕하세요</h1>
 
-  <h1 id="hi">JS 초보에요</h1>
+    <link href="main.css" rel="stylesheet">
+</head>
+<body id="parent">
+  <!--  자바스크립트 언어는 HTML 코드 조작을 위해 필요한 프로그래밍 언어이다.  -->
+  <!--  <h1 id="hello">안녕하세요</h1>  -->
+
+  <!--  <h1 id="hi">JS 초보에요</h1>  -->
+
+  <div class="alert-box" id="alert">알림창임</div>
+
+  <!--  TODO : id="alert"인 <div> 태그 화면에 출력 되도록 style.display 속성 'block' 할당 (2024.12.10 jbh)  -->
+  <!--  참고 URL - https://developer.mozilla.org/en-US/docs/Web/CSS/display  -->
+  <button onClick="document.getElementById('alert').style.display='block';">버튼</button>
+
+  <!--  TODO : 알림창 <div> 생성 버튼 onClick 이벤트 메서드 createAlert 구현 (2024.12.10 jbh)  -->
+  <!--  참고 URL - https://ondolroom.tistory.com/127  -->
+  <button onClick="javascript:createAlert()">알림창 생성</button>
 
   <script>
+    /// <summary>
+    /// 알림창 <div> 생성
+    /// </summary>
+    function createAlert() {
+      parent = document.getElementById('parent');
+      newAlert = document.createElement('div');
+      newAlert.innerHTML = 'Holy guacamole! You should check in on some of those fields below.';
+      
+      newAlert.setAttribute('id', 'alert');
+      document.getElementById('alert').className = 'alert-box';
+      parent.appendChild(newAlert);
+    }
+
     // document - html 문서(index.html) 의미
     // 마침표(.) - ~의 의미 (예) html 문서(index.html) 의
     // getElementById - 셀렉터(selector)라고 부르며, 웹문서 안에 있는 원하는 요소를 찾을 때 사용한다. html 문서(index.html)의 특정 아이디 값('hello')을 가진 html 요소(Element) 가져오기 
