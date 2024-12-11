@@ -14,6 +14,7 @@
 <!--  Level 1  -->
 <!--  1강 - 강의 소개와 자바스크립트의 근본  -->
 <!--  2강 - 동적 UI 만드는 스텝 (Alert 박스 만들기)  -->
+<!--  3강 - 자바스크립트 function 문법 사용법  -->
   
 <!DOCTYPE html>
 <html lang="en">
@@ -32,33 +33,66 @@
     <link href="main.css" rel="stylesheet">
 </head>
 <body id="parent">
+  <!--  주의사항  -->
+  <!--  1. <body> 태그 안에 html 코드를 상단에 먼저 작성 후 html 코드 바로 밑에 자바스크립트 코드 <script> 태그를 작성해야 한다.  -->
+  <!--  이유 : 컴퓨터가 컴파일 하면서 html 파일(index.html)을 읽을 때, 위에서 부터 한줄 한줄 읽는다. 하여 html 코드 부터 컴퓨터가 미리 읽어놔야 자바스크립트 코드로 html 코드를 조작할 수 있기 때문이다.  -->
+  <!--  2. Selector(getElementById) 또는 함수의 오타를 주의해야 한다.  -->
+  <!--  2번의 오타로 인해 오류가 발생한 것을 확인하려면 html 파일 실행한 웹브라우 화면 -> 단축키 F12키(또는 마우스 우클릭 -> 컨텍스트 메뉴 "검사" 클릭) -> 크롬 개발자 도구 -> 탭 Console에서 오류 확인 가능  -->
+
   <!--  자바스크립트 언어는 HTML 코드 조작을 위해 필요한 프로그래밍 언어이다.  -->
-  <h1 id="hello">안녕하세요</h1> 
+  <!--  <h1 id="hello">안녕하세요</h1>  -->
 
   <!--  <h1 id="hi">JS 초보에요</h1>  -->
-  <div class="alert-box" id="alert">알림창임<button onclick="document.getElementById('alert').style.display='none';">닫기</button></div>
+  <!--  <div class="alert-box" id="alert">알림창임 <button onclick="document.getElementById('alert').style.display='none';">닫기</button></div>  -->
+  <!--  <div class="alert-box" id="alert">알림창임 <button onclick="closeAlert()">닫기</button></div>  -->
+  <div class="alert-box" id="alert">알림창임 <button onclick="알림창닫기()">닫기</button></div>
 
   <!--  TODO : id="alert"인 <div> 태그 화면에 출력 되도록 style.display 속성 'block' 할당 (2024.12.10 jbh)  -->
   <!--  참고 URL - https://developer.mozilla.org/en-US/docs/Web/CSS/display  -->
-  <button onClick="document.getElementById('alert').style.display='block';">버튼</button>
+  <!-- <button onClick="document.getElementById('alert').style.display='block';">버튼</button> -->
+  <button onClick="알림창열기()">버튼</button>
 
   <!--  TODO : 알림창 <div> 생성 버튼 onClick 이벤트 메서드 createAlert 구현 (2024.12.10 jbh)  -->
   <!--  참고 URL - https://ondolroom.tistory.com/127  -->
-  <button onClick="javascript:createAlert()">알림창 생성</button>
+  <!--  <button onClick="javascript:createAlert()">알림창 생성</button>  -->
 
   <script>
+    // 자바스크립트 문법 function - 긴 코드를 짧은 단어로 축약할 때 사용하는 기능이다. 
+    // 자바스크립트 문법 function은 CSS의 클래스 처럼 긴 코드를 짧은 단어로 축약한다는 점은 유사하다
+    /// <summary>
+    /// 알림창 열기 
+    /// <div class="alert-box" id="alert"> 
+    /// </summary>
+    function 알림창열기() {
+      // TODO : 오류 메시지 "index.html:66 Uncaught TypeError: Cannot read properties of null (reading 'style')" 원인 파악 및 해결 (2024.12.12 jbh)
+      // 해당 오류 확인 결과 바로 아래 코드의 속성 "style"을 읽기 직전 왼쪽의 코드 "document.getElementById('alert1')"값이 null이여서 읽을 수 없다는 오류이며,
+      // 해당 오류 해결하기 위해 Selector "getElementById"의 파라미터에 할당되는 id 값이 잘못 입력되어 있으므로 id 값을 아래처럼 변경
+      // (오류 발생한 코드) document.getElementById('alert1')
+      // (오류 개선한 코드) document.getElementById('alert')
+      document.getElementById('alert').style.display = 'block';
+    }
+
+    /// <summary>
+    /// 알림창 닫기 
+    /// <div class="alert-box" id="alert"> 
+    /// </summary>
+    // function closeAlert() {
+    function 알림창닫기() {
+      document.getElementById('alert').style.display='none';
+    }
+
     /// <summary>
     /// 알림창 <div> 생성
     /// </summary>
-    function createAlert() {
-      parent = document.getElementById('parent');
-      newAlert = document.createElement('div');
-      newAlert.innerHTML = 'Holy guacamole! You should check in on some of those fields below.';
+    // function createAlert() {
+    //   parent = document.getElementById('parent');
+    //   newAlert = document.createElement('div');
+    //   newAlert.innerHTML = 'Holy guacamole! You should check in on some of those fields below.';
       
-      newAlert.setAttribute('id', 'alert');
-      document.getElementById('alert').className = 'alert-box';
-      parent.appendChild(newAlert);
-    }
+    //   newAlert.setAttribute('id', 'alert');
+    //   document.getElementById('alert').className = 'alert-box';
+    //   parent.appendChild(newAlert);
+    // }
 
     // document - html 문서(index.html) 의미
     // 마침표(.) - ~의 의미 (예) html 문서(index.html) 의
@@ -69,13 +103,13 @@
     // document.getElementById('hello').innerHTML = '안녕';
 
     // html 문서(index.html)의 특정 html 요소('hello')의 글자색을 빨간색(red)으로 바꾸기
-    document.getElementById('hello').style.color = 'red';
+    // document.getElementById('hello').style.color = 'red';
 
     // html 문서(index.html)의 특정 html 요소('hello')의 이미지(src)를 '~~~'으로 바꾸기
     // document.getElementById('hello').src = '~~~';
 
     // html 문서(index.html)의 특정 html 요소('hi')의 내부 html 내용(값) 을 등호(=) 오른쪽에 있는 'JS 고수에요'로 바꾸기
-    document.getElementById('hi').innerHTML = 'JS 고수에요';
+    // document.getElementById('hi').innerHTML = 'JS 고수에요';
 
     // [ 오늘의 숙제 ]
     // <h1> 내부 글자 사이즈를 16px로 변경해오십시오
@@ -83,7 +117,7 @@
     // html 문서(index.html)의 특정 html 요소('hello')의 글자 크기 '16px'로 바꾸기
     // 참고 URL - https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/fontsize
     // 참고 2 URL - https://shadesign.tistory.com/20
-    document.getElementById('hello').style.fontSize = '16px';
+    // document.getElementById('hello').style.fontSize = '16px';
 
   </script>
 
