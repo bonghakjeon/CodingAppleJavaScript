@@ -47,16 +47,36 @@
   <!--  <div class="alert-box" id="alert">알림창임 <button onclick="closeAlert()">닫기</button></div>  -->
   <div class="alert-box" id="alert">알림창임 <button onclick="알림창닫기()">닫기</button></div>
 
+  <div class="alert-box" id="inputID">아이디를 입력하세요 <button onclick="closeAlert('inputID')">닫기</button></div>
+  <div class="alert-box" id="inputPW">비밀번호를 입력하세요 <button onclick="closeAlert('inputPW')">닫기</button></div>
+
   <!--  TODO : id="alert"인 <div> 태그 화면에 출력 되도록 style.display 속성 'block' 할당 (2024.12.10 jbh)  -->
   <!--  참고 URL - https://developer.mozilla.org/en-US/docs/Web/CSS/display  -->
   <!-- <button onClick="document.getElementById('alert').style.display='block';">버튼</button> -->
   <button onClick="알림창열기()">버튼</button>
+
+  <button onClick="openAlert('inputID')">버튼1</button>
+  <button onClick="openAlert('inputPW')">버튼2</button>
 
   <!--  TODO : 알림창 <div> 생성 버튼 onClick 이벤트 메서드 createAlert 구현 (2024.12.10 jbh)  -->
   <!--  참고 URL - https://ondolroom.tistory.com/127  -->
   <!--  <button onClick="javascript:createAlert()">알림창 생성</button>  -->
 
   <script>
+    /// <summary>
+    /// 아이디/비밀번호 입력하세요 알림창 출력 
+    /// </summary>
+    function openAlert(구멍) {
+      document.getElementById(구멍).style.display = 'block';
+    }
+
+    /// <summary>
+    /// 아이디/비밀번호 입력하세요 알림창 닫기 
+    /// </summary>
+    function closeAlert(구멍) {
+      document.getElementById(구멍).style.display = 'none';
+    }
+
     // 자바스크립트 문법 function - 긴 코드를 짧은 단어로 축약할 때 사용하는 기능이다. 
     // 자바스크립트 문법 function은 CSS의 클래스 처럼 긴 코드를 짧은 단어로 축약한다는 점은 유사하다
     /// <summary>
