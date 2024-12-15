@@ -15,6 +15,7 @@
 <!--  1강 - 강의 소개와 자바스크립트의 근본  -->
 <!--  2강 - 동적 UI 만드는 스텝 (Alert 박스 만들기)  -->
 <!--  3강 - 자바스크립트 function 문법 사용법  -->
+<!--  4강 - function의 파라미터 문법  -->
   
 <!DOCTYPE html>
 <html lang="en">
@@ -45,15 +46,16 @@
   <!--  <h1 id="hi">JS 초보에요</h1>  -->
   <!--  <div class="alert-box" id="alert">알림창임 <button onclick="document.getElementById('alert').style.display='none';">닫기</button></div>  -->
   <!--  <div class="alert-box" id="alert">알림창임 <button onclick="closeAlert()">닫기</button></div>  -->
-  <div class="alert-box" id="alert">알림창임 <button onclick="알림창닫기()">닫기</button></div>
+  <div class="alert-box" id="alert"><p>알림창임</p> <button onclick="알림창닫기('none')">닫기</button></div>
 
-  <div class="alert-box" id="inputID">아이디를 입력하세요 <button onclick="closeAlert('inputID')">닫기</button></div>
-  <div class="alert-box" id="inputPW">비밀번호를 입력하세요 <button onclick="closeAlert('inputPW')">닫기</button></div>
+  <div class="alert-box" id="inputID"><p>아이디를 입력하세요</p> <button onclick="closeAlert('inputID')">닫기</button></div>
+  <!-- <div class="alert-box" id="inputPW">비밀번호를 입력하세요 <button onclick="closeAlert('inputPW')">닫기</button></div> -->
+  <div class="alert-box" id="inputPW"><p>비밀번호를 입력하세요</p> <button onclick="closeAlert('inputPW')">닫기</button></div>
 
   <!--  TODO : id="alert"인 <div> 태그 화면에 출력 되도록 style.display 속성 'block' 할당 (2024.12.10 jbh)  -->
   <!--  참고 URL - https://developer.mozilla.org/en-US/docs/Web/CSS/display  -->
   <!-- <button onClick="document.getElementById('alert').style.display='block';">버튼</button> -->
-  <button onClick="알림창열기()">버튼</button>
+  <button onClick="알림창열기('block')">버튼</button>
 
   <button onClick="openAlert('inputID')">버튼1</button>
   <button onClick="openAlert('inputPW')">버튼2</button>
@@ -66,6 +68,9 @@
     /// <summary>
     /// 아이디/비밀번호 입력하세요 알림창 출력 
     /// </summary>
+    // function openAlert(구멍) {
+    //   document.getElementById(구멍).style.display = 'block';
+    // }
     function openAlert(구멍) {
       document.getElementById(구멍).style.display = 'block';
     }
@@ -79,17 +84,23 @@
 
     // 자바스크립트 문법 function - 긴 코드를 짧은 단어로 축약할 때 사용하는 기능이다. 
     // 자바스크립트 문법 function은 CSS의 클래스 처럼 긴 코드를 짧은 단어로 축약한다는 점은 유사하다
+
+    // 자바스크립트 문법 파라미터 작명 - 파라미터 작명은 아무렇게나 가능 / 파라미터 여러개 가능 (예) function test(a, b, ...) { ... }
+
     /// <summary>
     /// 알림창 열기 
     /// <div class="alert-box" id="alert"> 
     /// </summary>
-    function 알림창열기() {
-      // TODO : 오류 메시지 "index.html:66 Uncaught TypeError: Cannot read properties of null (reading 'style')" 원인 파악 및 해결 (2024.12.12 jbh)
-      // 해당 오류 확인 결과 바로 아래 코드의 속성 "style"을 읽기 직전 왼쪽의 코드 "document.getElementById('alert1')"값이 null이여서 읽을 수 없다는 오류이며,
-      // 해당 오류 해결하기 위해 Selector "getElementById"의 파라미터에 할당되는 id 값이 잘못 입력되어 있으므로 id 값을 아래처럼 변경
-      // (오류 발생한 코드) document.getElementById('alert1')
-      // (오류 개선한 코드) document.getElementById('alert')
-      document.getElementById('alert').style.display = 'block';
+    // function 알림창열기() {
+    //   // TODO : 오류 메시지 "index.html:66 Uncaught TypeError: Cannot read properties of null (reading 'style')" 원인 파악 및 해결 (2024.12.12 jbh)
+    //   // 해당 오류 확인 결과 바로 아래 코드의 속성 "style"을 읽기 직전 왼쪽의 코드 "document.getElementById('alert1')"값이 null이여서 읽을 수 없다는 오류이며,
+    //   // 해당 오류 해결하기 위해 Selector "getElementById"의 파라미터에 할당되는 id 값이 잘못 입력되어 있으므로 id 값을 아래처럼 변경
+    //   // (오류 발생한 코드) document.getElementById('alert1')
+    //   // (오류 개선한 코드) document.getElementById('alert')
+    //   document.getElementById('alert').style.display = 'block';
+    // }
+    function 알림창열기(구멍) {
+      document.getElementById('alert').style.display = 구멍;
     }
 
     /// <summary>
@@ -97,8 +108,8 @@
     /// <div class="alert-box" id="alert"> 
     /// </summary>
     // function closeAlert() {
-    function 알림창닫기() {
-      document.getElementById('alert').style.display='none';
+    function 알림창닫기(구멍) {
+      document.getElementById('alert').style.display=구멍;
     }
 
     /// <summary>
