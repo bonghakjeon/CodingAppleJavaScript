@@ -23,10 +23,10 @@
     <meta charset="UTF-8">
     <title>Document</title>
 
-    <!-- 부트스트랩(BootStrap) 설치  -->
-    <!-- 유튜브  -->
-    <!-- 참고 URL - https://youtu.be/iHWlRtWNquA?si=uVzQUkL2QL3a0RI1 -->
-    <!-- 참고 2 URL - https://youtu.be/F-v6EcMPJwA?si=GgTOZ1qE5w1m_2lR -->
+    <!--  부트스트랩(BootStrap) 설치  -->
+    <!--  유튜브  -->
+    <!--  참고 URL - https://youtu.be/iHWlRtWNquA?si=uVzQUkL2QL3a0RI1  -->
+    <!--  참고 2 URL - https://youtu.be/F-v6EcMPJwA?si=GgTOZ1qE5w1m_2lR  -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
           rel="stylesheet" 
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
@@ -46,46 +46,155 @@
   <!--  <h1 id="hi">JS 초보에요</h1>  -->
   <!--  <div class="alert-box" id="alert">알림창임 <button onclick="document.getElementById('alert').style.display='none';">닫기</button></div>  -->
   <!--  <div class="alert-box" id="alert">알림창임 <button onclick="closeAlert()">닫기</button></div>  -->
-  <div class="alert-box" id="alert"><p>알림창임</p> <button onclick="알림창닫기('none')">닫기</button></div>
+  <div class="alert-box" id="alert">
+    <p id="title">알림창임</p> 
+    <!--  <button onclick="알림창닫기('none')">닫기</button>  -->
+    <button id="close">닫기</button>
+  </div>
 
-  <div class="alert-box" id="inputID"><p>아이디를 입력하세요</p> <button onclick="closeAlert('inputID')">닫기</button></div>
+  <!-- <div class="alert-box" id="inputID"><p>아이디를 입력하세요</p> <button onclick="closeAlert('inputID')">닫기</button></div> -->
   <!-- <div class="alert-box" id="inputPW">비밀번호를 입력하세요 <button onclick="closeAlert('inputPW')">닫기</button></div> -->
-  <div class="alert-box" id="inputPW"><p>비밀번호를 입력하세요</p> <button onclick="closeAlert('inputPW')">닫기</button></div>
+  <!-- <div class="alert-box" id="inputPW"><p>비밀번호를 입력하세요</p> <button onclick="closeAlert('inputPW')">닫기</button></div> -->
 
   <!--  TODO : id="alert"인 <div> 태그 화면에 출력 되도록 style.display 속성 'block' 할당 (2024.12.10 jbh)  -->
   <!--  참고 URL - https://developer.mozilla.org/en-US/docs/Web/CSS/display  -->
-  <!-- <button onClick="document.getElementById('alert').style.display='block';">버튼</button> -->
-  <button onClick="알림창열기('block')">버튼</button>
+  <!--  <button onClick="document.getElementById('alert').style.display='block';">버튼</button>  -->
+  <!--  <button onClick="알림창열기('block')">버튼</button>  -->
 
-  <button onClick="openAlert('inputID')">버튼1</button>
-  <button onClick="openAlert('inputPW')">버튼2</button>
+  <!-- <button onclick="아이디알림창()">버튼1</button> -->
+  <!-- <button onClick="비번알림창()">버튼2</button> -->
+  <button onclick="알림창('아이디입력하셈', 'block')">버튼1</button>
+  <button onclick="알림창('비번입력하셈', 'block')">버튼2</button>
+
+  <p class="title1"> 테스트1 </p>
+  <p class="title1"> 테스트2 </p>
+
+  <!--  <button onClick="openAlert('inputID')">버튼1</button>  -->
+  <!--  <button onClick="openAlert('inputPW')">버튼2</button>  -->
 
   <!--  TODO : 알림창 <div> 생성 버튼 onClick 이벤트 메서드 createAlert 구현 (2024.12.10 jbh)  -->
   <!--  참고 URL - https://ondolroom.tistory.com/127  -->
   <!--  <button onClick="javascript:createAlert()">알림창 생성</button>  -->
 
   <script>
+    // 자바스크립트 이벤트리스너 문법(addEventListener) 사용하여 
+    // "id가 "close"인 요소를 버튼 클릭하면 안의 코드를 실행하여 
+    // 알림창 종료 
+    /// <summary>
+    /// 알림창 종료 이벤트리스너
+    /// </summary>
+    document.getElementById('close').addEventListener('click', function() {
+      document.getElementById('alert').style.display = 'none';
+    });
+
+    // getElementsByClassName 셀렉터(selector) 사용하여 class명이 'title1'인 모든 요소들 중 첫번째 요소인 <p> 태그 찾아서 해당 태그 내용을 '안녕' 변경 
+    // [0] 이렇게 순서를 넣는 이유는
+    // getElementsByClassName 셀렉터(selector)는 일치하는 class가 들어있는 모든 html 요소를 찾아주기 때문
+    // 그래서 그 중에 몇번째 요소를 바꿀지 [순서]를 꼭 뒤에 붙여줘야함.
+    // [0] 이렇게 쓰면 찾은 것 중 위에서 부터 1번째 요소
+    // [1] 이렇게 쓰면 찾은 것 중 위에서 부터 2번째 요소
+    // [2] 이렇게 쓰면 찾은 것 중 위에서 부터 3번째 요소
+    document.getElementsByClassName('title1')[0].innerHTML = '안녕';
+
+    /// <summary>
+    /// 아이디/비밀번호 입력하세요 알림창 출력 
+    /// </summary>
+    function 알림창(구멍1, 구멍2) {
+      document.getElementById('title').innerHTML = 구멍1;
+      document.getElementById('alert').style.display = 구멍2;
+    }
+
+    /// <summary>
+    /// 아이디 입력하세요 알림창 출력 
+    /// </summary>
+    // function 아이디알림창() {
+    //   document.getElementById('title').innerHTML = '아이디입력하셈';
+    //   document.getElementById('alert').style.display = 'block';
+    // }
+
+    /// <summary>
+    /// 비밀번호 입력하세요 알림창 출력
+    /// </summary>
+    // function 비번알림창() {
+    //   document.getElementById('title').innerHTML = '비번입력하셈';
+    //   document.getElementById('alert').style.display = 'block';
+    // }
+
     /// <summary>
     /// 아이디/비밀번호 입력하세요 알림창 출력 
     /// </summary>
     // function openAlert(구멍) {
     //   document.getElementById(구멍).style.display = 'block';
     // }
-    function openAlert(구멍) {
-      document.getElementById(구멍).style.display = 'block';
-    }
+    // function openAlert(구멍) {
+    //   document.getElementById(구멍).style.display = 'block';
+    // }
 
     /// <summary>
     /// 아이디/비밀번호 입력하세요 알림창 닫기 
     /// </summary>
-    function closeAlert(구멍) {
-      document.getElementById(구멍).style.display = 'none';
-    }
+    // function closeAlert(구멍) {
+    //   document.getElementById(구멍).style.display = 'none';
+    // }
 
     // 자바스크립트 문법 function - 긴 코드를 짧은 단어로 축약할 때 사용하는 기능이다. 
     // 자바스크립트 문법 function은 CSS의 클래스 처럼 긴 코드를 짧은 단어로 축약한다는 점은 유사하다
 
     // 자바스크립트 문법 파라미터 작명 - 파라미터 작명은 아무렇게나 가능 / 파라미터 여러개 가능 (예) function test(a, b, ...) { ... }
+
+    // 자바스크립트 문법 셀렉터(selector) 종류 
+    // 1. document.getElementById() - id 속성에 할당된 값에 일치하는 요소 찾기 
+    // 2. document.getElementsByClassName() - class 속성에 할당된 값에 일치하는 요소 찾기
+    // 3. document.getElementsByTagName() - TagName 속성에 할당된 값에 일치하는 요소 찾기
+    // 4. document.getElementsByName() - Name 속성에 할당된 값에 일치하는 요소 찾기   
+
+    // 자바스크립트 문법 이벤트 종류
+    // 자바스크립트 공식 문서 이벤트 종류 목록 사이트 
+    // 참고 URL - https://developer.mozilla.org/en-US/docs/Web/Events
+    // 1. click - 특정 요소 마우스 클릭 이벤트 
+    // 2. mouseover - 특정 요소 마우스 갖다대기 이벤트 
+    // 3. scroll - 특정 요소 마우스 스크롤 이벤트 
+    // 4. keydown - 특정 요소 키보드 키입력 이벤트  
+
+    // 자바스크립트 문법 이벤트리스너(addEventListener)
+    // 이벤트리스너(addEventListener)는 위의 이벤트가 일어나면 내부 코드를 실행해주는 자바스크립트 기본 문법이다.
+    // <button> 태그 onclick=" " 속성 안에 자바스크립트를 길게 코드 작성할 필요 없이
+    // 아래처럼 이벤트리스너 문법 사용하면 html 코드 안에 자바스크립트 코드 안 적고도 똑같이 개발 진행 가능 
+    // C# 이벤트 핸들러 가입하는 로직과 비슷한 기능임
+    // 아래 기능은 "id가 어쩌구인 요소(셀렉터로찾은요소)를 버튼 클릭하면 안의 코드를 실행해주세요~"를 의미
+    // document.getElementById('어쩌구').addEventListener('click', function() {
+    //     // 실행할 코드 
+    // })
+
+    // 이벤트리스너(addEventListener) 예시 1
+    // 아래 기능은 "id가 어쩌구인 요소(셀렉터로찾은요소)에 마우스를 스윽 갖다대면 안의 특정 코드를 실행해주세요~"를 의미
+    // document.getElementById('어쩌구').addEventListener('mouseover', function() {
+    //   // 실행할 코드 
+    // })
+
+    // 이벤트리스너(addEventListener) 예시 2
+    // 아래 기능은 "id가 어쩌구인 요소(셀렉터로찾은요소)에 마우스로 스크롤되면 안의 특정 코드를 실행해주세요~"를 의미
+    // 당연히 해당 요소에 스크롤바가 있어야됨
+    // document.getElementById('어쩌구').addEventListener('scroll', function() {
+    //   // 실행할 코드 
+    // })
+
+    // 이벤트리스너(addEventListener) 예시 3
+    // 아래 기능 "id가 어쩌구인 요소(셀렉터로찾은요소)에 키보드로 글자를 입력하면 안의 특정 코드를 실행해주세요~"를 의미 
+    // 당연히 해당 요소가 글자를 입력할 수 있는 <input> 이런 종류여야 함.
+    // document.getElementById('어쩌구').addEventListener('keydown', function() {
+    //   // 실행할 코드 
+    // })
+
+    // 자바스크립트 문법 콜백함수 
+    // 함수 파라미터 자리에 들어가는 함수를 전문용어로 '콜백함수'라고 한다. (햠수가 중첩된 형태)
+    // 콜백함수는 여러 기능을 순차적으로 실행하고 싶을 때 사용한다.
+    // 콜백함수 예시
+    // 아래 주석친 코드에서 콜백함수는 자바스크립트 이벤트리스너 함수(addEventListener) 안의 2번째 파라미터로 구현된
+    // function() { // 실행할 코드 }을 의미한다.
+    // document.getElementById('어쩌구').addEventListener('scroll', function() {
+    //   // 실행할 코드 
+    // })
 
     /// <summary>
     /// 알림창 열기 
