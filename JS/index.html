@@ -16,6 +16,7 @@
 <!--  2강 - 동적 UI 만드는 스텝 (Alert 박스 만들기)  -->
 <!--  3강 - 자바스크립트 function 문법 사용법  -->
 <!--  4강 - function의 파라미터 문법  -->
+<!--  5강 - 자바스크립트 이벤트리스너  -->
   
 <!DOCTYPE html>
 <html lang="en">
@@ -63,8 +64,11 @@
 
   <!-- <button onclick="아이디알림창()">버튼1</button> -->
   <!-- <button onClick="비번알림창()">버튼2</button> -->
-  <button onclick="알림창('아이디입력하셈', 'block')">버튼1</button>
-  <button onclick="알림창('비번입력하셈', 'block')">버튼2</button>
+  <!-- <button onclick="알림창('아이디입력하셈', 'block')">버튼1</button> -->
+  <!-- <button onclick="알림창('비번입력하셈', 'block')">버튼2</button> -->
+
+  <button onclick="알림창('아이디입력하셈')">버튼1</button>
+  <button onclick="알림창('비번입력하셈')">버튼2</button>
 
   <p class="title1"> 테스트1 </p>
   <p class="title1"> 테스트2 </p>
@@ -78,30 +82,42 @@
 
   <script>
     // 자바스크립트 이벤트리스너 문법(addEventListener) 사용하여 
-    // "id가 "close"인 요소를 버튼 클릭하면 안의 코드를 실행하여 
-    // 알림창 종료 
+    // "id가 "close"인 요소를 버튼 클릭하면 안의 코드를 실행하여 알림창('alert') 종료
+    // C# 이벤트 핸들러(이벤트 메서드)와 비슷한 기능  
+    // 자바스크립트 콜백함수란? 함수 파라미터 자리안에 들어가는 또 다른 함수 의미하고 자바스크립트 코드 실행할 때 함수를 순차적으로 실행하고 싶을 때 사용
     /// <summary>
     /// 알림창 종료 이벤트리스너
     /// </summary>
+    // document.getElementById('close').addEventListener('mouseover', function() {
     document.getElementById('close').addEventListener('click', function() {
       document.getElementById('alert').style.display = 'none';
     });
 
+    /// <summary>
+    /// 알림창 열기 
+    /// <div class="alert-box" id="alert"> 
+    /// </summary>
+    function 알림창열기(구멍) {
+      document.getElementById('alert').style.display = 구멍;
+    }
+
     // getElementsByClassName 셀렉터(selector) 사용하여 class명이 'title1'인 모든 요소들 중 첫번째 요소인 <p> 태그 찾아서 해당 태그 내용을 '안녕' 변경 
     // [0] 이렇게 순서를 넣는 이유는
-    // getElementsByClassName 셀렉터(selector)는 일치하는 class가 들어있는 모든 html 요소를 찾아주기 때문
+    // 1. html 파일 안에 중복된 class 이름들이 존재하기 때문 
+    // 2. getElementsByClassName 셀렉터(selector)는 일치하는 class가 들어있는 모든 html 요소를 찾아주기 때문
     // 그래서 그 중에 몇번째 요소를 바꿀지 [순서]를 꼭 뒤에 붙여줘야함.
-    // [0] 이렇게 쓰면 찾은 것 중 위에서 부터 1번째 요소
-    // [1] 이렇게 쓰면 찾은 것 중 위에서 부터 2번째 요소
-    // [2] 이렇게 쓰면 찾은 것 중 위에서 부터 3번째 요소
+    // [0] 이렇게 쓰면 class명이 'title1'인 모든 요소들 중 html 파일 맨 위에서 부터 1번째 요소
+    // [1] 이렇게 쓰면 class명이 'title1'인 모든 요소들 중 html 파일 맨 위에서 부터 2번째 요소
+    // [2] 이렇게 쓰면 class명이 'title1'인 모든 요소들 중 html 파일 맨 위에서 부터 3번째 요소
     document.getElementsByClassName('title1')[0].innerHTML = '안녕';
 
     /// <summary>
     /// 아이디/비밀번호 입력하세요 알림창 출력 
     /// </summary>
-    function 알림창(구멍1, 구멍2) {
+    // function 알림창(구멍1, 구멍2) {
+    function 알림창(구멍1) {
       document.getElementById('title').innerHTML = 구멍1;
-      document.getElementById('alert').style.display = 구멍2;
+      document.getElementById('alert').style.display = 'block';
     }
 
     /// <summary>
@@ -208,18 +224,18 @@
     //   // (오류 개선한 코드) document.getElementById('alert')
     //   document.getElementById('alert').style.display = 'block';
     // }
-    function 알림창열기(구멍) {
-      document.getElementById('alert').style.display = 구멍;
-    }
+    // function 알림창열기(구멍) {
+    //   document.getElementById('alert').style.display = 구멍;
+    // }
 
     /// <summary>
     /// 알림창 닫기 
     /// <div class="alert-box" id="alert"> 
     /// </summary>
     // function closeAlert() {
-    function 알림창닫기(구멍) {
-      document.getElementById('alert').style.display=구멍;
-    }
+    // function 알림창닫기(구멍) {
+    //   document.getElementById('alert').style.display=구멍;
+    // }
 
     /// <summary>
     /// 알림창 <div> 생성
