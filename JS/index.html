@@ -19,6 +19,7 @@
 <!--  5강 - 자바스크립트 이벤트리스너  -->
 <!--  6강 - 서브메뉴 만들어보기와 classList 다루기  -->
 <!--  7강 - jQuery 사용법 간단정리  -->
+<!--  8강 - 모달창만들기와 간단한 애니메이션  -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,11 +48,11 @@
 </head>
 <!--  <body id="parent">  -->
 <body>
-  <!--  모달창  -->
+  <!--  모달창 - 모달창은 html 페이지 모든 요소 보다 맨 위에 작성 해야함.  -->
   <div class="black-bg">
     <div class="white-bg">
       <h4>로그인하세요</h4>
-      <button class="btn btn-danger" id="close">닫기</button>
+      <button class="btn btn-danger" id="closeModal">닫기</button>
     </div>
   </div> 
 
@@ -109,7 +110,7 @@
   <button onclick="알림창('아이디입력하셈')">버튼1</button>
   <button onclick="알림창('비번입력하셈')">버튼2</button>
 
-  <button class="modal-btn">Modal 버튼</button>
+  <!-- <button class="modal-btn">Modal 버튼</button> -->
 
   <p class="title1"> 테스트1 </p>
   <p class="title1"> 테스트2 </p>
@@ -126,7 +127,7 @@
   <button id="test-btn">버튼</button>
   <!--  <button class="test-btn">버튼</button>  -->
 
-  <button id="login-btn">로그인</button>
+  <button id="login">로그인</button>
 
   <!--  <button onClick="openAlert('inputID')">버튼1</button>  -->
   <!--  <button onClick="openAlert('inputPW')">버튼2</button>  -->
@@ -136,8 +137,39 @@
   <!--  <button onClick="javascript:createAlert()">알림창 생성</button>  -->
 
   <script>
-    $('#login-btn').on('click', function(){
-      $('#modal').addClass('show');
+    /// <summary>
+    /// 라이브러리 jQuery 문법
+    /// 버튼 로그인 이벤트리스너 
+    /// <summary>
+    $('#login').on('click', function(){
+      $('.black-bg').addClass('show-modal');
+    })
+
+    /// <summary>
+    /// 일반 자바스크립트 문법
+    /// 버튼 로그인 이벤트리스너 
+    /// <summary>
+    // document.getElementById('login').addEventListener('click', function() {
+    //   // 아래 코드 2줄은 모두 같은 기능임.
+    //   document.getElementsByClassName('black-bg')[0].classList.add('show-modal')
+    //   document.querySelector('.black-bg').classList.add('show-modal')
+    // })
+
+    /// <summary>
+    /// 라이브러리 jQuery 문법
+    /// 버튼 닫기 이벤트리스너 
+    /// <summary>
+    // $('#closeModal').on('click', function(){
+    //   $('.black-bg').removeClass('show-modal');
+    // });
+
+    /// <summary>
+    /// 일반 자바스크립트 문법
+    /// 버튼 닫기 이벤트리스너 
+    /// <summary>
+    document.getElementById('closeModal').addEventListener('click',function() {
+      // document.getElementsByClassName('black-bg')[0].classList.remove('show-modal')
+      document.querySelector('.black-bg').classList.remove('show-modal')
     })
 
     // document.querySelector('#test-btn').addEventListener('click', function() { })
@@ -148,6 +180,20 @@
     })
 
     // document.querySelector('.hello').innerHTML = '바보';
+
+    // ** CSS one-way UI 애니메이션 만드는 법 ** 
+    // one-way UI 애니메이션란? 
+    // A상태 -> B상태 일방향으로 이동하는 UI 애니메이션 기법이다.
+    // (예) 투명도 0 -> 투명도 1
+    // (예2) margin-left 10px -> margin-left 300px (왼쪽 -> 오른쪽 이동)
+    // (예3) font-size 15px -> 30px (작은 글자 -> 큰 글자 - 글자 크기 키우기)
+    // one-way UI 애니메이션 만드는 법 
+    // 1. CSS 시작스타일 class 만들기 
+    // 2. CSS 최종스타일 class 만들기 
+    // 3. 자바스크립트 사용해서 원할 때(이벤트 발생하면) CSS 최종스타일로 변하라고 코드 작성
+    // 4. 1번에서 구현한 CSS 시작스타일 class에 transition 속성 추가하기 (예 - transition : all 1s; 해당 속성 추가해야 1초간 서서히 변경되도록 one-way UI 애니메이션 효과를 구현할 수 있다.)
+    // 주의사항 - one-way UI 애니메이션을 css class로 구현할 때, 속성 display(display : none; / display : block;) 사용하지 말고 visibility(visibility : hidden; / visibility : visible;)로 사용해야 UI 애니메이션 효과를 주기가 용이하다.
+
 
     // 라이브러리 jQuery 문법 querySelector
     // $() 예시
