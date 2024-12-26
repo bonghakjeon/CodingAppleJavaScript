@@ -51,10 +51,25 @@
   <!--  모달창 - 모달창은 html 페이지 모든 요소 보다 맨 위에 작성 해야함.  -->
   <div class="black-bg">
     <div class="white-bg">
+      <form action="success.html">
+        <div class="my-3">
+          <input type="text" class="form-control" id="email">
+         </div>
+         <div class="my-3">
+           <input type="password" class="form-control" id="pw">
+         </div>
+         <button type="submit" class="btn btn-primary" id="transfer">전송</button>
+         <button type="button" class="btn btn-danger" id="close">닫기</button>
+      </form> 
+    </div>
+  </div> 
+  <!--  모달창 - 예시  -->
+  <!-- <div class="black-bg">
+    <div class="white-bg">
       <h4>로그인하세요</h4>
       <button class="btn btn-danger" id="closeModal">닫기</button>
     </div>
-  </div> 
+  </div>  -->
 
   <!--  상단메뉴 - NavBar  -->
   <nav class="navbar navbar-light bg-light">
@@ -137,6 +152,31 @@
   <!--  <button onClick="javascript:createAlert()">알림창 생성</button>  -->
 
   <script>
+    /// <summary>
+    /// 라이브러리 jQuery 문법
+    /// 버튼 전송 이벤트리스너 
+    /// <summary>
+    $('form').on('submit', function(e){
+      e.preventDefault(); 
+      const email = document.getElementById('email').value
+      // TODO : <input> 태그에 입력된 문자열 공백 여부 체크 로직 구현 (2024.12.26 jbh)
+      // 참고 URL - https://codingapple.com/forums/topic/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-input-%EA%B3%B5%EB%B0%B1%EC%B2%B4%ED%81%AC-%ED%99%95%EC%9D%B8-%EB%B6%80%ED%83%81%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4/
+      // 참고 2 URL - https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault
+      if('' == email.value) { 
+        alert('아이디입력하세요')
+      } 
+    })
+
+    /// <summary>
+    /// 일반 자바스크립트 문법
+    /// 버튼 전송 이벤트리스너 
+    /// <summary>
+    // document.querySelector('.form').addEventListener('submit', function() {
+    //   const email = document.getElementById('email').value
+    //   if('' == email.value) alert('아이디입력하세요')
+    //   e.preventDefault();
+    // })
+
     /// <summary>
     /// 라이브러리 jQuery 문법
     /// 버튼 로그인 이벤트리스너 
