@@ -21,6 +21,7 @@
 <!--  7강 - jQuery 사용법 간단정리  -->
 <!--  8강 - 모달창만들기와 간단한 애니메이션  -->
 <!--  9강 - 폼만들며 배워보는 if else  -->
+<!-- 10강 - 공백검사 숙제와 else if 문법  -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +63,7 @@
          <div class="my-3">
            <input type="password" class="form-control" id="password">
          </div>
-         <button type="submit" class="btn btn-primary" id="submit">전송</button>
+         <button type="submit" class="btn btn-primary" id="send">전송</button>
          <button type="button" class="btn btn-danger" id="closeModal">닫기</button>
       </form> 
     </div>
@@ -161,19 +162,23 @@
   <!--  참고 URL - https://ondolroom.tistory.com/127  -->
   <!--  <button onClick="javascript:createAlert()">알림창 생성</button>  -->
 
+  <!--  <script> 태그 안에 존재하는 자바스크립트 코드는 웹브라우저 화면 새로고침(F5) 진행할 때마다 꼭 실행됨.  -->
   <script>
     /// <summary>
     /// 라이브러리 jQuery 문법
     /// 버튼 전송 이벤트리스너 
     /// <summary>
+    // $('#send').on('click', function(e){
+    // <form> 태그명 찾아서 type="submit"(전송) 하는 이벤트 리스너(on) 구현 
     $('form').on('submit', function(e){
       // 1. <input> 태그에 입력한 id 값이 공백인 경우 
       // 일반 자바스크립트 문법 방식 if절 구현 
       // if('' == document.getElementById('email').value) {
       // jQuery 문법 방식으로 if절 구현
       if('' == $('#email').val()) {
+        // alert('아이디 입력하쇼');
+        alert('아이디 입력안함');
         e.preventDefault();   // 폼 전송을 막음
-        alert('아이디 입력하쇼');
       }
 
       // 2. <input> 태그에 입력한 password 값이 공백인 경우 
@@ -181,8 +186,8 @@
       // if('' == document.getElementById('password').value) {
       // jQuery 문법 방식으로 if절 구현
       if('' == $('#password').val()) {
-        e.preventDefault();   // 폼 전송을 막음
         alert('비밀번호 입력하쇼'); 
+        e.preventDefault();   // 폼 전송을 막음
       }
       
       // 3. <input> 태그에 입력한 password 값이 6자리 미만 경우
@@ -191,8 +196,8 @@
       // jQuery 문법 방식으로 if절 구현
       // 참고 URL - https://wecanit.tistory.com/20
       if($('#password').val().length < 6) {
-        e.preventDefault();   // 폼 전송을 막음
         alert('비밀번호를 6자 이상 입력해주세요');
+        e.preventDefault();   // 폼 전송을 막음
       }
     });
 
@@ -203,16 +208,16 @@
     //   // 참고 2 URL - https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault
     //   // 참고 3 URL - https://velog.io/@smpark3095/WEB-FRONT-END-%EC%A3%BC%EB%8B%88%EC%96%B4-%EA%B0%9C%EB%B0%9C%EC%9E%90-JavaScript-if-else-%EB%AC%B8%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-input-%EA%B3%B5%EB%B0%B1-alert%EC%B0%BD-%EB%9D%84%EC%9A%B0%EA%B8%B0-%EC%97%B0%EC%82%B0%EC%9E%90
     //   if($('#id').value == '') { 
-    //     e.preventDefault()
     //     alert('아이디를 입력해주세요')
+    //     e.preventDefault()
     //   }
     //   if($('#password').value == '') {
-    //     e.preventDefault()
     //     alert('비밀번호를 입력해주세요')
+    //     e.preventDefault()
     //   } 
     //   if($('#password').value.length < 6) {
-    //     e.preventDefault()
     //     alert('비밀번호를 6자 이상 입력해주세요')
+    //     e.preventDefault()
     //   }
     // })
 
@@ -226,16 +231,16 @@
       // 참고 2 URL - https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault
       // 참고 3 URL - https://velog.io/@smpark3095/WEB-FRONT-END-%EC%A3%BC%EB%8B%88%EC%96%B4-%EA%B0%9C%EB%B0%9C%EC%9E%90-JavaScript-if-else-%EB%AC%B8%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-input-%EA%B3%B5%EB%B0%B1-alert%EC%B0%BD-%EB%9D%84%EC%9A%B0%EA%B8%B0-%EC%97%B0%EC%82%B0%EC%9E%90
       //if(document.querySelector('#id').value == '') { // id 라는 id 를 선택하고 해당 input이 공백일 경우
-      //    e.preventDefault() // 폼 전송을 막음
       //    alert('아이디를 입력해주세요') // '아이디를 입력해주세요' 라는 경고창을 띄움
+      //    e.preventDefault() // 폼 전송을 막음
       //}
       //if(document.querySelector('#password').value == '') { // password 라는 id 를 선택하고 해당 input이 공백일 경우
-      //    e.preventDefault() // 폼 전송을 막음
       //    alert('비밀번호를 입력해주세요') // '비밀번호를 입력해주세요' 라는 경고창을 띄움
+      //    e.preventDefault() // 폼 전송을 막음
       //}
       //if(document.querySelector('#password').value.length < 6){ // password 라는 id 를 선택하고 해당 input이 6자 미만일 경우
-      //    e.preventDefault() // 폼 전송을 막음
       //    alert('비밀번호를 6자 이상 입력해주세요') // '비밀번호를 6자 이상 입력해주세요' 라는 경고창을 띄움
+      //    e.preventDefault() // 폼 전송을 막음
       //} 
     //});
 
