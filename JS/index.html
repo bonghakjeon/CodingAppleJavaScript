@@ -22,6 +22,7 @@
 <!--  8강 - 모달창만들기와 간단한 애니메이션  -->
 <!--  9강 - 폼만들며 배워보는 if else  -->
 <!-- 10강 - 공백검사 숙제와 else if 문법  -->
+<!-- 11강 - input, change 이벤트와 and, or 연산자  -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +63,8 @@
          </div>
          <div class="my-3">
            <input type="password" class="form-control" id="password">
+           <!--  TODO : 비밀번호 6자리 미만 입력시 아래 id="passwordAlert"인 <p>태그 출력되도록 추가 구현 예정 (2025.01.09 jmj)  -->
+           <p id="passwordAlert" style="display: none;">비밀번호 6자리 이상 입력하세요</p>
          </div>
          <button type="submit" class="btn btn-primary" id="send">전송</button>
          <button type="button" class="btn btn-danger" id="closeModal">닫기</button>
@@ -164,9 +167,60 @@
 
   <!--  <script> 태그 안에 존재하는 자바스크립트 코드는 웹브라우저 화면 새로고침(F5) 진행할 때마다 꼭 실행됨.  -->
   <script>
+    // *** if 조건절에서 true로 인식하는 자료 목록
+    // 1) 0제외한 숫자들
+    // 2) '문자'
+    // 3) []
+    // 4) {}
+
+    // *** if 조건절에서 false로 인식하는 자료 목록
+    // 1) 0
+    // 2) ''
+    // 3) null
+    // 4) undefined
+    // 5) NaN
+
+    // if 조건절 예제 1
+    // if (1 == 1 && 2 == 2) {
+    //   console.log('안녕')
+    // }
+
+    // if 조건절 예제 2
+    // if (1 == 1 || 2 == 2) {
+    //   console.log('안녕')
+    // }
+
+    // if 조건절 예제 3
+    // if (1 == 1 && 2 == 2 && 3 == 3) {
+    //   console.log('안녕')
+    // }
+
+    /// <summary>
+    /// id='email'인 <input> 태그에 사용자가 입력한 값이 변할 때 실행되는 'input' 이벤트리스너
+    /// </summary>
+    document.getElementById('email').addEventListener('input', function() {
+      console.log('input 테스트')
+      if($('#password').val().length < 6) {
+        // id="passwordAlert" 출력되게 구현
+        document.getElementById('passwordAlert').display = 'block'
+      } else {
+        // id="passwordAlert" 사라지게 구현
+        document.getElementById('passwordAlert').display = 'none'
+      }
+    })
+
+    /// <summary>
+    /// id='email'인 <input> 태그에 사용자가 입력한 값이 변경되고나서
+    /// 마우스 커서를 다른 곳에 찍으면(마우스 포커스를 잃을 때) 실행되는 'change' 이벤트리스너
+    /// </summary>
+    document.getElementById('email').addEventListener('change', function() {
+      console.log('change 테스트')
+    })
+    
+
     /// <summary>
     /// 라이브러리 jQuery 문법
-    /// 버튼 전송 이벤트리스너 
+    /// 버튼 전송('submit') 이벤트리스너 
     /// <summary>
     // $('#send').on('click', function(e){
     // <form> 태그명 찾아서 type="submit"(전송) 하는 이벤트 리스너(on) 구현 
@@ -175,6 +229,13 @@
       // 일반 자바스크립트 문법 방식 if절 구현 
       // if('' == document.getElementById('email').value) {
       // jQuery 문법 방식으로 if절 구현
+      // 엄격한 조건 비교(=== / !==) - (=== / !==) 연산자 기준 왼쪽과 오른쪽의 값들과 자료형 타입이 같은지 또는 다른지 비교
+      // (예1) 1 === '1' => false
+      // (예2) 1 === 1 => true
+      // if('' === $('#email').val()) {
+      // 느슨한 조건 비교(== / !=) - (== / !=) 연산자 기준 왼쪽과 오른쪽의 값만 같은지 또는 다른지 비교
+      // (예1) 1 == '1' => true
+      // (예2) 1 == 1 => true
       if('' == $('#email').val()) {
         // alert('아이디 입력하쇼');
         alert('아이디 입력안함');
@@ -185,6 +246,13 @@
       // 일반 자바스크립트 문법 방식 if절 구현
       // if('' == document.getElementById('password').value) {
       // jQuery 문법 방식으로 if절 구현
+      // 엄격한 조건 비교(=== / !==) - (=== / !==) 연산자 기준 왼쪽과 오른쪽의 값들과 자료형 타입이 같은지 또는 다른지 비교
+      // (예1) 1 === '1' => false
+      // (예2) 1 === 1 => true
+      // if('' === $('#password').val()) {
+      // 느슨한 조건 비교(== / !=) - (== / !=) 연산자 기준 왼쪽과 오른쪽의 값만 같은지 또는 다른지 비교
+      // (예1) 1 == '1' => true
+      // (예2) 1 == 1 => true
       if('' == $('#password').val()) {
         alert('비밀번호 입력하쇼'); 
         e.preventDefault();   // 폼 전송을 막음
@@ -225,6 +293,8 @@
     /// 일반 자바스크립트 문법
     /// 버튼 전송 이벤트리스너 
     /// <summary>
+    // 왼쪽의 요소(document.querySelector('#submit'))가 클릭 이벤트('click')가 발생하면
+    // 아래 이벤트리스너 코드 실행
     // document.querySelector('#submit').addEventListener('click', function(e) {
       // TODO : <input> 태그에 입력된 문자열 공백 여부 체크 로직 구현 (2024.12.26 jbh)
       // 참고 URL - https://codingapple.com/forums/topic/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-input-%EA%B3%B5%EB%B0%B1%EC%B2%B4%ED%81%AC-%ED%99%95%EC%9D%B8-%EB%B6%80%ED%83%81%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4/
