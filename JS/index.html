@@ -24,6 +24,7 @@
 <!-- 10강 - 공백검사 숙제와 else if 문법  -->
 <!-- 11강 - input, change 이벤트와 and, or 연산자  -->
 <!-- 12강 - if/else, function 실력향상 과제  -->
+<!-- 13강 - 변수문법과 Dark mode 버튼만들기  -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,9 +53,6 @@
 </head>
 <!--  <body id="parent">  -->
 <body>
-  <!--  TODO : 다크모드 버튼 구현 및 우측 정렬 클래스명 "ms-auto mx-3" 추가 (2025.01.15 minjae)  -->
-  <span class="badge bg-dark ms-auto mx-3">Dark 🔄</span>
-
   <!--  모달창 - 모달창은 html 페이지 모든 요소 보다 맨 위에 작성 해야함.  -->
   <div class="black-bg">
     <div class="white-bg">
@@ -86,7 +84,9 @@
   <!--  상단메뉴 - NavBar  -->
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <span class="navbar-brand">Navbar</span>
+      <span class="navbar-brand">JSShop</span>
+      <!--  TODO : 다크모드 버튼 구현 및 우측 정렬 클래스명 "ms-auto mx-3" 추가 (2025.01.15 minjae)  -->
+      <span class="badge bg-dark ms-auto mx-3" id="darkmode-btn">Dark 🔄</span>
       <button class="navbar-toggler" type="button">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -172,36 +172,6 @@
 
   <!--  <script> 태그 안에 존재하는 자바스크립트 코드는 웹브라우저 화면 새로고침(F5) 진행할 때마다 꼭 실행됨.  -->
   <script>
-    // 자바스크립트 변수 문법
-    // 변수는 비유하자면 간단한 포스트잇이라고 보면 된다.
-    // 장점 
-    // 1. 길고 복잡한 자료가 있으면 잠깐 변수에 저장해서 쓰면 편리함.
-    // 2. 특정 값을 기록하고 싶으면 변수 사용.
-    var count = 0;   // 버튼누른 횟수 변수 count 초기화 (버튼누를 때 마다 변수 count 값을 1 증가)
-    // 변수 count에 +1 하는 법 예시 1
-    count++;
-    // 변수 count에 +1 하는 법 예시 2
-    // count+=1
-
-    // 변수 count에 +1 하는 법 예시 3
-    // count = count + 1
-
-    console.log(count);
-
-    // 변수 count에 -1 하는 법 예시 1
-    // count--;
-
-    // 변수 count에 -1 하는 법 예시 2
-    // count -= 1
-
-
-    // 자바스크립트 변수 사용 예시
-    // var 나이 = 20;
-    // var 이름 = 'kim';
-    // var 인삿말 = '안녕하세요 반갑습니다 오랜만인데 그동안 잘지냈니';
-    // console.log(나이, 이름, 인삿말)
-
-
     // *** 함수 구현시 주의사항 *** 
     // 참고) 함수이름 작명시 맨 처음 단어는 숫자를 사용하시면 안됩니다.
     // 참고2) 페이지 내의 다른 곳에서 자바스크립트 문법 에러가 뜨는 경우 다른 코드도 실행이 제대로 되지 않습니다.
@@ -330,6 +300,79 @@
     // if (1 == 1 && 2 == 2 && 3 == 3) {
     //   console.log('안녕')
     // }
+
+    // *** 자바스크립트 변수 문법 *** 
+    // 변수는 비유하자면 간단한 포스트잇이라고 보면 된다.
+    // 장점 
+    // 1. 길고 복잡한 자료가 있으면 잠깐 변수에 저장해서 쓰면 편리함.
+    // 2. 특정 값을 기록하고 싶으면 변수 사용.
+    // 변수 선언 예시 1
+    // var 변수이름 = 변수에넣을값;
+    var count = 0;   // id='darkmode-btn'인 <span> 태그 "Dark" 버튼 누른 횟수 변수 count 초기화 (버튼누를 때 마다 변수 count 값을 1 증가)
+    // 변수 count에 +1 하는 법 예시 1
+    // count++;
+    // 변수 count에 +1 하는 법 예시 2
+    // count+=1
+
+    // 변수 count에 +1 하는 법 예시 3
+    // count = count + 1
+
+    // console.log(count);
+
+    // 변수 count에 -1 하는 법 예시 1
+    // count--;
+
+    // 변수 count에 -1 하는 법 예시 2
+    // count -= 1
+
+
+    // 자바스크립트 변수 사용 예시 2
+    // var 나이 = 20;
+    // var 이름 = 'kim';
+    // var 인삿말 = '안녕하세요 반갑습니다 오랜만인데 그동안 잘지냈니';
+    // console.log(나이, 이름, 인삿말)
+
+    /// <summary>
+    /// 라이브러리 jQuery 문법
+    /// class='badge'인 <span> 태그 버튼을 사용자가 클릭할 때 실행되는 'click' 이벤트리스너
+    /// </summary>
+    $('.badge').on('click', function() {
+      // 버튼 1회 클릭시마다 변수 count에 +1 증가  
+      count++; // 버튼 1회 클릭시마다 변수 count에 +1 증가  
+      // count+=1;   
+      // count = count + 1;
+      console.log(count);
+
+      // count--; // 버튼 1회 클릭시마다 변수 count에 -1 감소  
+      // count-=1;
+      // count = count - 1;  
+
+      // 버튼 클릭한 횟수(count)가 홀수인 경우 
+      if(count % 2 == 1) {
+        // html 문서(index.html)의 특정 html 요소('darkmode-btn')의 글자색을 밝은색(Light)으로 바꾸기
+        document.getElementById('darkmode-btn').style.color = 'white';
+      } else {   // 버튼 클릭한 횟수(count)가 짝수인 경우 
+        // html 문서(index.html)의 특정 html 요소('darkmode-btn')의 글자색을 어두운색(Dark)으로 바꾸기
+        document.getElementById('darkmode-btn').style.color = 'black';
+      }
+    });
+
+    // TODO : 아래 주석친 'click' 이벤트 리스너 필요시 참고 (2025.01.20 minjae)
+    /// <summary>
+    /// id='darkmode-btn'인 <span> 태그 버튼을 사용자가 클릭할 때 실행되는 'click' 이벤트리스너
+    /// </summary>
+    // document.getElementById('darkmode-btn').addEventListener('click', function() {
+    //   count++;   // 버튼 1회 클릭시마다 변수 count에 +1 증가  
+    //   console.log(count)
+    //   // 버튼 클릭한 횟수(count)가 홀수인 경우 
+    //   if(count % 2 == 1) {
+    //     // html 문서(index.html)의 특정 html 요소('darkmode-btn')의 글자색을 밝은색(Light)으로 바꾸기
+    //     document.getElementById('darkmode-btn').style.color = 'white';
+    //   } else {   // 버튼 클릭한 횟수(count)가 짝수인 경우 
+    //     // html 문서(index.html)의 특정 html 요소('darkmode-btn')의 글자색을 어두운색(Dark)으로 바꾸기
+    //     document.getElementById('darkmode-btn').style.color = 'black';
+    //   }
+    // });
 
     /// <summary>
     /// id='email'인 <input> 태그에 사용자가 입력한 값이 변할 때 실행되는 'input' 이벤트리스너
