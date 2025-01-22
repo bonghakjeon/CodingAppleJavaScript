@@ -25,6 +25,7 @@
 <!-- 11강 - input, change 이벤트와 and, or 연산자  -->
 <!-- 12강 - if/else, function 실력향상 과제  -->
 <!-- 13강 - 변수문법과 Dark mode 버튼만들기  -->
+<!-- 14강 - 변수 심화학습시간 & 저번시간 숙제 -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +53,7 @@
             crossorigin="anonymous"></script>
 </head>
 <!--  <body id="parent">  -->
-<body>
+<body class="dark">
   <!--  모달창 - 모달창은 html 페이지 모든 요소 보다 맨 위에 작성 해야함.  -->
   <div class="black-bg">
     <div class="white-bg">
@@ -396,13 +397,18 @@
       if(count % 2 == 1) {
         // html 문서(index.html)의 특정 html 요소('darkmode-btn')의 내부 글자를 'Light'로 바꾸기
         // document.getElementById('darkmode-btn').innerHTML = 'Light';
-        $('.badge').html('Light');
+        $('.badge').html('Light 🔄');
+        $('body').removeClass('dark');   // <body> 태그에 속한 속성 class에 할당된 값 'dark' 제거 
+        $('nav').removeClass('navbar-dark bg-dark');   // <nav> 태그에 속한 속성 class에 할당된 값 'navbar-dark bg-dark' 제거 
       } else {   // 버튼 클릭한 횟수(count)가 짝수인 경우 
         // html 문서(index.html)의 특정 html 요소('darkmode-btn')의 내부 글자를 'Dark'로 바꾸기
         document.getElementById('darkmode-btn').innerHTML = 'Dark';
-        $('.badge').html('Dark');
+        $('.badge').html('Dark 🔄');
+        $('body').addClass('dark');   // <body> 태그에 속한 속성 class에 할당된 값 'dark' 추가 
+        $('nav').addClass('navbar-dark bg-dark');   // <nav> 태그에 속한 속성 class에 할당된 값 'navbar-dark bg-dark' 추가
       }
     });
+
 
     // TODO : 아래 주석친 'click' 이벤트 리스너 필요시 참고 (2025.01.20 minjae)
     /// <summary>

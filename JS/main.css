@@ -17,6 +17,10 @@
   visibility : visible;
   opacity : 1; 
 }
+.dark {
+  background: black;
+  color: white;
+}
 .main-bg {
   padding : 100px 20px;
   background : lightgrey;
