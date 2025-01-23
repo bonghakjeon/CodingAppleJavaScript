@@ -26,6 +26,7 @@
 <!-- 12강 - if/else, function 실력향상 과제  -->
 <!-- 13강 - 변수문법과 Dark mode 버튼만들기  -->
 <!-- 14강 - 변수 심화학습시간 & 저번시간 숙제 -->
+<!-- 15강 - 변수, 사칙연산 실력향상 과제  -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -155,14 +156,18 @@
   <div class="test1">안녕하세요</div>
 
   <p class="hello">안녕</p>
-  <p class="hello">안녕</p>
-  <p class="hello">안녕</p>
+  <!-- <p class="hello">안녕</p>
+  <p class="hello">안녕</p> -->
 
   <button id="test-btn">버튼</button>
   <button id="game-btn">삼육구게임버튼</button>
   <!--  <button class="test-btn">버튼</button>  -->
 
   <button id="login">로그인</button>
+
+  <p>태조 이성계가 태어난 년도는?</p>
+  <input type="text" id="answer">
+  <button id="send-answer">제출</button>
 
   <!--  <button onClick="openAlert('inputID')">버튼1</button>  -->
   <!--  <button onClick="openAlert('inputPW')">버튼2</button>  -->
@@ -173,6 +178,35 @@
 
   <!--  <script> 태그 안에 존재하는 자바스크립트 코드는 웹브라우저 화면 새로고침(F5) 진행할 때마다 꼭 실행됨.  -->
   <script>
+    // <script> 태그 안에 그냥 있는 코드는 사용자 크롬(Chrome) 웹브라우저 새로고침시 1회 실행
+
+    /// <summary>
+    /// 태조 이성계가 태어난 년도 퀴즈 맞추기 클릭 이벤트리스너
+    /// 이벤트리스너 안에 있는 코드는 이벤트 발동시 1회 실행
+    /// <summary>
+    var count = 0;   // 퀴즈 틀린 횟수
+    document.querySelector('#send-answer').addEventListener('click', function(){
+      count += 1;
+      var 유저답안 = document.querySelector('#answer').value;
+      if (유저답안 == '1335') {
+        alert('성공')
+      } else if (count >= 3 && 유저답안 != '1335'){
+        alert('멍청아')
+      }
+    });
+
+    // document.getElementById('send-answer').addEventListener('click', function() {
+    //   count += 1;
+    //   console.log(count)
+    //   var 유저답안 = document.getElementById('answer').value;
+    //   if (유저답안 == '1335') {
+    //     count = 0;
+    //     alert('성공')
+    //   } else if (count >= 3 && 유저답안 != '1335'){
+    //     alert('멍청아')
+    //   }
+    // });
+
     // *** 함수 구현시 주의사항 *** 
     // 참고) 함수이름 작명시 맨 처음 단어는 숫자를 사용하시면 안됩니다.
     // 참고2) 페이지 내의 다른 곳에서 자바스크립트 문법 에러가 뜨는 경우 다른 코드도 실행이 제대로 되지 않습니다.
@@ -376,6 +410,60 @@
     // - var 키워드로 선언한 변수는 유연해서 변수 재선언 및 재할당이 자유롭다.
     // let 키워드 {Block-scoped} / 변수 재선언 X / 변수 재할당 O
     // const {Block-scoped} / 변수 재선언 X / 변수 재할당 X
+
+    // 변수 재할당 예시 1
+    // let 나이 = 35;  // 변수 재할당 가능
+    // const 출신지역 = '인천';   // 변수 재할당 불가능
+
+    // 변수 재할당 예시 2
+    // let age = 20;   // 변수 재할당 가능
+    // const place = '서울';   // 변수 재할당 불가능
+
+    // 변수 코드 예시 1
+    // var name = 'park';
+    // var id = 0;
+
+    // function showName(){
+    //   // 함수 showName 안에서 선언된 변수들은 지역변수라고 부른다.
+    //   // var name의 경우 함수 안에서 재선언 + 재할당 -> 'kim' 출력
+    //   // var id의 경우 함수 안에 있던 변수는 바깥으로 탈출하지 않는다.
+    //   var name = 'kim';
+    //   var id = 1;
+    //   console.log(name); // 'kim' 출력
+    // }
+
+    // showName();
+    // // 함수 바깥에서 console.log(id) 하면 그냥 함수 showName 바로 위에있던 var id = 0 이 출력
+    // console.log(id);   // 0 출력
+
+    // 변수 코드 예시 2
+    // var 예금액 = 60000;
+    // let 미래예금액 = 0;
+
+    // function 이자율계산기() {
+    //   if (예금액 >= 50000) {
+    //     미래예금액 = 예금액 * 1.2 * 1.2 ;
+    //   } else {
+    //     미래예금액 = 예금액 * 1.15 * 1.15 ;
+    //   }
+    // }
+    // 이자율계산기();
+    // console.log(미래예금액)
+
+    // 변수 코드 예시 3
+    var first = 360;
+
+    function 커피양계산기() {
+      var total = 0;
+      var second = (first * 2) / 3;
+      var third = (second * 2) / 3;
+      total = first + second + third;
+      // total = first + first * 2 / 3 + first * 2 / 3 * 2 / 3;
+
+      console.log(total)
+    }
+
+    커피양계산기();
 
     /// <summary>
     /// 라이브러리 jQuery 문법
