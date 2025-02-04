@@ -26,7 +26,11 @@
 <!-- 12강 - if/else, function 실력향상 과제  -->
 <!-- 13강 - 변수문법과 Dark mode 버튼만들기  -->
 <!-- 14강 - 변수 심화학습시간 & 저번시간 숙제 -->
+
+<!--  Level 2  -->
 <!-- 15강 - 변수, 사칙연산 실력향상 과제  -->
+<!-- 16강 - setTimeout 타이머주는 법  -->
+ 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -169,6 +173,13 @@
   <input type="text" id="answer">
   <button id="send-answer">제출</button>
 
+  <!-- <div class="alert alert-danger" id="sale">
+    5초 이내 구매시 사은품 증정
+  </div> -->
+  <div class="alert alert-danger" id="sale">
+    <span id="num">5</span>초 이내 구매시 사은품 증정
+  </div>
+
   <!--  <button onClick="openAlert('inputID')">버튼1</button>  -->
   <!--  <button onClick="openAlert('inputPW')">버튼2</button>  -->
 
@@ -180,20 +191,121 @@
   <script>
     // <script> 태그 안에 그냥 있는 코드는 사용자 크롬(Chrome) 웹브라우저 새로고침시 1회 실행
 
+    // 자바스크립트 기본 함수 
+    // setTimeout() - X초 후에 코드 실행 
+    // 시간단위 - ms단위(1ms는 1000분의 1초) 
+    // setTimeout(function(){ 실행할코드~ }, 기다릴시간);
+    // setTimeout(function(){ 
+    //   console.log('안녕')   // 1초 후 크롬(Chrome) 웹브라우저 개발자도구 -> 리본 탭 "Console" 클릭 -> "Console"창에 '안녕' 1번만 출력
+    // }, 1000);
+    // setTimeout(function(){
+    //   // 웹페이지 방문 5초 후에 위의 <div class="alert alert-danger" id="sale">를 숨기기
+    //   // document.getElementById('sale').style.display = 'none';   // 일반 자바스크립트 방식
+    //   $('.alert').hide();   // jQuery 방식 -  함수 .hide() 는 위의 display = 'none' 준거랑 비슷하게 동작함.
+    // }, 5000)
+    // setTimeout(function(){ 
+    //   console.log('안녕') 
+    //     // 웹페이지 방문 1초 후에 위의 <div class="alert alert-danger" id="sale">를 숨기기
+    //     // document.getElementById('sale').style.display = 'none';   // 일반 자바스크립트 방식
+    //     $('.alert').hide();   // jQuery 방식 -  함수 .hide() 는 위의 display = 'none' 준거랑 비슷하게 동작함.
+    //   $('.alert').hide();
+    // }, 1000);
+
+    
+    // setInterval() - X초 마다 코드 실행 
+    // 시간단위 - ms단위(1ms는 1000분의 1초) 
+    // setInterval(function(){ 실행할코드~ }, 기다릴시간);
+    // setInterval(function(){
+    //   console.log('안녕')   // 1초 마다 크롬(Chrome) 웹브라우저 개발자도구 -> 리본 탭 "Console" 클릭 -> "Console"창에 '안녕' 반복 출력
+    // }, 1000);
+    // setInterval(function(){
+    //   console.log('안녕');
+    // }, 1000);
+
+    // 자바스크립트 프로그래밍 문법 종류 
+    // 참고 URL - https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/let
+    // 참고 2 URL - https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/const
+    // var - 함수 스코프의 범위를 가지는 자료를 잠깐 보관할 때 사용 
+    // let - 블록 스코프의 범위를 가지는 지역 변수
+    // const -  블록 스코프의 범위를 가지는 상수를 선언(상수의 값은 재할당할 수 없으며 다시 선언할 수도 없다.)
+    // if - 코드를 조건부로 실행하고 싶으면 if
+    // function - 반복되는 코드 약간 줄이고 싶을 때 사용 
+
+    // 웹브라우저 API (Web API) 사용법 (자바스크립트 기반)
+    // 용도 - 웹 브라우저 상에서 이쁜 UI도 만들고 폼 기능도 만들고 이벤트 걸고 할 때 사용 
+    // document.querySelector()
+    // alert()
+    // setTimeout()
+    // addEventListener()
+
+    // 자바스크립트 콜백함수란?
+    // 함수 파라미터 자리에 들어가는 함수를 콜백함수라고 한다.
+    // addEventListener(), setTimeout() 이런건 안에 콜백함수를 요구함.
+    // 콜백함수도 일종의 함수기 때문에 아래처럼 다른 곳에서 만든 함수를 콜백함수 위치에 집어넣어도 잘 작동함
+    // setTimeout(함수, 1000);   // setTimeout 함수의 파라미터로 콜백함수 "함수" 집어넣어도 잘 작동함.
+    // function 함수() {
+    //   console.log('안녕')
+    // }
+    // addEventListener(함수)
+    // function 함수() {
+    //   console.log('안녕')
+    // }
+
+    /// <summary>
+    /// <div class="alert alert-danger" id="sale"> 안에 "5초 이내 구매시 사은품 증정" 이라는 문자가 있다.
+    /// 1초마다 <span id="count"> 안에 적힌 5라는 문자 1씩 감소
+    /// 문자가 0이 되면 <div class="alert alert-danger" id="sale">를 안보이게 처리
+    /// <summary>
+    // var cnt = 5;   // 5초 이내 구매시 사은품 증정
+    // setInterval(function() {
+    //   if(0 === cnt) {
+    //     // 웹페이지 방문 5초 후에 위의 <div class="alert alert-danger" id="sale">를 숨기기
+    //     // document.getElementById('sale').style.display = 'none';   // 일반 자바스크립트 방식
+    //     $('.alert').hide();   // jQuery 방식 -  함수 .hide() 는 위의 display = 'none' 준거랑 비슷하게 동작함.
+    //   } 
+    //   else {
+    //     // html 문서(index.html)의 특정 html 요소('count')의 내부 글자를 cnt.toString(); 로 바꾸기
+    //     // document.getElementById('count').innerHTML = cnt.toString();
+    //     $('#count').html(cnt.toString());
+    //     console.log(cnt)
+    //     cnt -= 1;
+    //   } 
+    // }, 1000);
+    
+    // (참고) 타이머를 삭제하고 싶으면
+    // var 타이머 = setInterval(어쩌구);
+    // 이렇게 변수에 저장해둔 다음
+    // 타이머 삭제하고 싶을 때 clearTimeout(타이머) 이 코드 실행하면 된다.
+    var cnt = 5;
+
+    setInterval(function(){
+      
+      if (cnt > 0){
+        cnt -= 1;
+        document.querySelector('#num').innerHTML = cnt;
+      } 
+      else if(0 === cnt) { 
+        // 웹페이지 방문 5초 후에 위의 <div class="alert alert-danger" id="sale">를 숨기기
+        // document.getElementById('sale').style.display = 'none';   // 일반 자바스크립트 방식
+        $('.alert').hide();   // jQuery 방식 -  함수 .hide() 는 위의 display = 'none' 준거랑 비슷하게 동작함.
+      } 
+    }, 1000);
+    
+
     /// <summary>
     /// 태조 이성계가 태어난 년도 퀴즈 맞추기 클릭 이벤트리스너
     /// 이벤트리스너 안에 있는 코드는 이벤트 발동시 1회 실행
     /// <summary>
-    var count = 0;   // 퀴즈 틀린 횟수
-    document.querySelector('#send-answer').addEventListener('click', function(){
-      count += 1;
-      var 유저답안 = document.querySelector('#answer').value;
-      if (유저답안 == '1335') {
-        alert('성공')
-      } else if (count >= 3 && 유저답안 != '1335'){
-        alert('멍청아')
-      }
-    });
+    // var count = 0;   // 퀴즈 틀린 횟수
+    // document.querySelector('#send-answer').addEventListener('click', function(){
+    //   count += 1;
+    //   var 유저답안 = document.querySelector('#answer').value;
+    //   if (유저답안 == '1335') {
+    //     alert('성공')
+    //   } else if (count >= 3 && 유저답안 != '1335'){
+    //     alert('멍청아')
+    //   }
+    // });
 
     // document.getElementById('send-answer').addEventListener('click', function() {
     //   count += 1;
